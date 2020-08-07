@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+		"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	  xmlns:h="http://xmlns.jcp.org/jsf/html"
+	  xmlns:f="http://xmlns.jcp.org/jsf/core"
+	  xmlns:p="http://primefaces.org/ui">
+<ui:composition template="../layout.xhtml">
+
+	<ui:define name="content">
+		<h:form id="form">
+			<p:panel header="People List">
+				<p:dataTable id="table" var="person" value="#{listPeopleController.people}">
+					<p:column>
+						<f:facet name="header"># Id</f:facet>
+						<h:outputText value="#{person.id}" />
+					</p:column>
+
+					<p:column>
+						<f:facet name="header">Name</f:facet>
+						<h:outputText value="#{person.name}" />
+					</p:column>
+
+					<p:column>
+						<f:facet name="header">Sex</f:facet>
+						<h:outputText value="#{person.sex}" />
+					</p:column>
+					
+					<p:column>
+						<f:facet name="header">E-mail</f:facet>
+						<h:outputText value="#{person.email}" />
+					</p:column>
+					
+					<p:column>
+						<f:facet name="header">Birthdate</f:facet>
+						<h:outputText value="#{person.birthdate}" />
+					</p:column>
+					
+					<p:column>
+						<f:facet name="header">Naturalness</f:facet>
+						<h:outputText value="#{person.naturalness}" />
+					</p:column>
+					
+					<p:column>
+						<f:facet name="header">Nationality</f:facet>
+						<h:outputText value="#{person.nationality}" />
+					</p:column>
+					
+					<p:column>
+						<f:facet name="header">CPF</f:facet>
+						<h:outputText value="#{person.cpf}" />
+					</p:column>
+
+					<p:column>
+						<f:facet name="header">Action</f:facet>
+						<h:commandButton id="delete-button"
+										 action="#{listPeopleController.delete(person)}"
+										 value="Delete" />
+						<h:commandButton id="edit-button" action="#{listPeopleController.edit()}" 
+							immediate="true" value="View/Edit" >
+						    <f:setPropertyActionListener target="#{personEditController.person}" value="#{person}" />
+						</h:commandButton>
+					</p:column>
+				</p:dataTable>
+			</p:panel>
+		</h:form>
+	</ui:define>
+
+</ui:composition>
+</html>

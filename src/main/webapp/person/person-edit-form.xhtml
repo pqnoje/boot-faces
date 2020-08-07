@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+		"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<ui:composition template="../layout.xhtml">
+	<ui:define name="content">
+		<h:form id="personForm">
+			<p:messages id="messages" showDetail="true" closable="true" />
+			<p:panel header="Person Details">
+				<h:panelGrid id="grid" columns="4" cellpadding="5">
+					<p:outputLabel for="name" value="Name" />
+					<p:inputText id="name" value="#{personEditController.person.name}"
+						required="true" />
+					<p:message for="name" />
+					<h:outputText value="#{personEditController.person.name}" />
+
+					<p:outputLabel for="cpf" value="CPF" />
+					<p:inputText id="cpf" value="#{personEditController.person.cpf}"
+						required="true">
+						<f:validator validatorId="CpfValidator" />
+					</p:inputText>
+					<p:message for="cpf" />
+					<h:outputText value="#{personEditController.person.cpf}" />
+
+					<p:outputLabel for="sex" value="Sex" />
+					<p:selectOneRadio id="sex"
+						value="#{personEditController.person.sex}" unselectable="true">
+						<f:selectItem itemLabel="Male" itemValue="m" />
+						<f:selectItem itemLabel="Female" itemValue="f" />
+					</p:selectOneRadio>
+					<p:message for="sex" />
+					<h:outputText value="#{personEditController.person.sex}" />
+
+					<p:outputLabel for="email" value="E-mail" />
+					<p:inputText id="email" required="false"
+						value="#{personEditController.person.email}"
+						validatorMessage="E-mail: Validation Error: Invalid format.">
+						<f:validateRegex
+							pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$|" />
+					</p:inputText>
+
+					<p:message for="email" />
+					<h:outputText value="#{personEditController.person.email}" />
+
+					<p:outputLabel for="birthdate" value="Birthdate" />
+					<p:datePicker id="birthdate"
+						value="#{personEditController.person.birthdate}"
+						pattern="MM/dd/yyyy" maxdate="#{personEditController.maxDate}"
+						required="true">
+						<f:convertDateTime pattern="MM/dd/yyyy" type="localDate" />
+					</p:datePicker>
+					<p:message for="birthdate" />
+					<h:outputText value="#{personEditController.person.birthdate}" />
+
+					<p:outputLabel for="naturalness" value="Naturalness" />
+					<p:inputText id="naturalness"
+						value="#{personEditController.person.naturalness}" />
+					<p:message for="naturalness" />
+					<h:outputText value="#{personEditController.person.naturalness}" />
+
+					<p:outputLabel for="nationality" value="Nationality" />
+					<p:inputText id="nationality"
+						value="#{personEditController.person.nationality}" />
+					<p:message for="nationality" />
+					<h:outputText value="#{personEditController.person.nationality}" />
+
+				</h:panelGrid>
+				<p:commandButton value="Save" validateClient="true"
+					icon="pi pi-save" action="#{personEditController.save}" />
+			</p:panel>
+		</h:form>
+	</ui:define>
+
+</ui:composition>
+</html>
