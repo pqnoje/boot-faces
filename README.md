@@ -3,6 +3,8 @@
 To run application, just open terminal in project root directory and send command: 
 mvn spring-boot:run
 
+Then, access by link: http://localhost:8080
+
 You'll need JDK 8 and Maven installed.
 
 This challange was completed with attention and care. 
